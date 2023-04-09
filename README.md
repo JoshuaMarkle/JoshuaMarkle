@@ -1,2 +1,21 @@
 ![Joshua Markle](/banner.png "Joshua Markle")
-<h4 align="center">I like to code!</h4>
+
+I'm a software developer based in Williamsburg, VA. I love experimenting with new technologies and building innovative projects.
+
+## Tools Used
+
+* OS: [Arch Linux](https://archlinux.org/)
+* WM: [AwesomeWM](https://github.com/awesomeWM/awesome)
+* VCS: Git/GitHub 
+* Text Editor: [NvChad](https://github.com/NvChad/NvChad)
+* Theme: [Catppuccin](https://github.com/catppuccin) Mocha 
+* Terminal: [Alacritty](https://github.com/alacritty/alacritty) 
+* PDF Reader: [Zathura](https://pwmt.org/projects/zathura/) 
+
+## Languages Used 
+
+* Python
+* Dart
+* C/C++
+* HTML 
+* Lua

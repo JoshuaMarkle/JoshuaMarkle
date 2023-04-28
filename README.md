@@ -1,6 +1,6 @@
 ![Joshua Markle](/banner.png "Joshua Markle")
 
-I'm a software developer based in Williamsburg, VA. I love experimenting with new technologies and building innovative projects.
+I'm a software developer based in VA and I love experimenting with new technologies and building innovative projects.
 
 ## Tools Used
 

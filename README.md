@@ -36,5 +36,6 @@
 ![Windows Badge](https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=fff&style=flat-square)
 ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=flat-square)
 
+### 📈 Stats and Stuff:
 [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500)](https://git.io/streak-stats)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00)](https://github.com/JoshuaMarkle/github-readme-stats)

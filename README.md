@@ -37,5 +37,17 @@
 ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=flat-square)
 
 ### 📈 Stats and Stuff:
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500)](https://git.io/streak-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00)](https://github.com/JoshuaMarkle/github-readme-stats)
+<table>
+  <tr>
+    <td>
+      <a href="https://git.io/streak-stats">
+        <img src="https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500" alt="GitHub Streak">
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/JoshuaMarkle/github-readme-stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00" alt="Top Langs">
+      </a>
+    </td>
+  </tr>
+</table>

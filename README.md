@@ -28,6 +28,7 @@
 ![Godot Engine Badge](https://img.shields.io/badge/Godot%20Engine-478CBF?logo=godotengine&logoColor=fff&style=flat-square)
 ![Neovim Badge](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=fff&style=flat-square)
 ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=flat-square)
+![Atom Badge](https://img.shields.io/badge/Atom-66595C?logo=atom&logoColor=fff&style=flat-square)
 ![Android Studio Badge](https://img.shields.io/badge/Android%20Studio-3DDC84?logo=androidstudio&logoColor=fff&style=flat-square)
 ![Adobe Badge](https://img.shields.io/badge/Adobe-F00?logo=adobe&logoColor=fff&style=flat-square)
 ![Arch Linux Badge](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=archlinux&logoColor=fff&style=flat-square)
@@ -36,4 +37,4 @@
 ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=flat-square)
 
 [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500)](https://git.io/streak-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=compact)](https://github.com/JoshuaMarkle/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00)](https://github.com/JoshuaMarkle/github-readme-stats)

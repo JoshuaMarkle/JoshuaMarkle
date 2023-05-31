@@ -40,14 +40,10 @@
 <table>
   <tr>
     <td>
-      <a href="https://git.io/streak-stats">
-        <img src="https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500" alt="GitHub Streak">
-      </a>
+      <img src="https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500" alt="GitHub Streak">
     </td>
     <td>
-      <a href="https://github.com/JoshuaMarkle/github-readme-stats">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00" alt="Top Langs">
-      </a>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00" alt="Top Langs">
     </td>
   </tr>
 </table>

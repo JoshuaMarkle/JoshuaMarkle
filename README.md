@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm currently learning PyTorch in my spare time.</i>
+  <i>I'm currently making a video game in my spare time.</i>
 </p>
 
 <img align='right' src='https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif' width='150"'>

@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm currently making a video game in my spare time.</i>
+  <i>I'm currently researching app development in my spare time.</i>
 </p>
 
 <img align='right' src='https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif' width='150"'>
@@ -23,13 +23,14 @@
 ![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?style=flat-square&logo=itchdotio&logoColor=white)
 ![Firebase Badge](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=000&style=flat-square)
 ![Neovim Badge](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=fff&style=flat-square)
+![Static Badge](https://img.shields.io/badge/TMUX-white?style=flat-square&logo=tmux)
 ![Alacritty](https://img.shields.io/badge/alacritty-F46D01?style=flat-square&logo=alacritty&logoColor=white)
 ![RStudio Badge](https://img.shields.io/badge/RStudio-75AADB?style=flat-square&logo=RStudio&logoColor=white)
 ![Jupyter Badge](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=fff&style=flat-square)
 ![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat-square)
 ![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat-square)
 
-### 🧠 What I Hope To Learn One Day
+### 🧠 What I Hope To Master One Day
 ![PyTorch Badge](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=fff&style=flat-square)
 ![TensorFlow Badge](https://img.shields.io/badge/TensorFlow-FF6F00?logo=tensorflow&logoColor=fff&style=flat-square)
 ![Amazon AWS Badge](https://img.shields.io/badge/Amazon%20AWS-232F3E?logo=amazonaws&logoColor=fff&style=flat-square)

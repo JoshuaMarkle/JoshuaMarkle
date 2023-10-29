@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm currently learning haskell in my spare time.</i>
+  <i>I'm doing college applications in my spare time.</i>
 </p>
 
 <img align='right' src='https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif' width='150"'>

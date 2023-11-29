@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm creating <href src="https://algotype.net/">AlgoType.net</href> in my spare time.</i>
+  <i>I'm building an operating system in my spare time.</i>
 </p>
 
 <img align='right' src='https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif' width='150"'>

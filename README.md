@@ -5,10 +5,6 @@
   <i>I'm building an operating system in my spare time.</i>
 </p>
 
-<div align="center">
-    <img src="animation.svg" width="400" height="400" alt="css-in-readme">
-</div>
-
 ### 👨‍💻 Programming and Markup Languages
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat-square)
 ![C Badge](https://img.shields.io/badge/C-A8B9CC?logo=c&logoColor=fff&style=flat-square)

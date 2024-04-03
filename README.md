@@ -5,7 +5,9 @@
   <i>I'm building an operating system in my spare time.</i>
 </p>
 
-<img align='right' src='https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif' width='150"'>
+<div align="center">
+    <img src="animation.svg" width="400" height="400" alt="css-in-readme">
+</div>
 
 ### 👨‍💻 Programming and Markup Languages
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat-square)

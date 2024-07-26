@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm workin on an emacs config in my spare time.</i>
+  <i>I'm workin on leetcode in my spare time.</i>
 </p>
 
 ### 👨‍💻 Programming and Markup Languages

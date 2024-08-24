@@ -1,7 +1,7 @@
 <h1 align="center">Hi, I'm Joshua 👋</h1>
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm moving into college in my spare time.</i>
+  <i>I'm chillin at college in my spare time.</i>
 </p>
 
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat-square)

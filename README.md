@@ -4,6 +4,8 @@
   <i>I'm absorbing x86 assembly and the RISK-V architecture in my spare time.</i>
 </p>
 
+### Some Stuff I like
+
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat-square)
 ![C++ Badge](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=flat-square)
 ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat-square)
@@ -39,11 +41,3 @@
 ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat-square)
 ![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=flat-square)
 ![Static Badge](https://img.shields.io/badge/Three.js-red?style=flat-square&logo=three.js&logoColor=fff&color=%23000000)
-
-### 📈 Stats and Stuff:
-<table>
-  <tr>
-    <td><img src="https://github-readme-streak-stats.herokuapp.com?user=JoshuaMarkle&hide_border=true&border_radius=20&card_width=500" alt="GitHub Streak"></td>
-    <td><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JoshuaMarkle&layout=donut&hide_border=true&title_color=FB8C00" alt="Top Langs"></td>
-  </tr>
-</table>

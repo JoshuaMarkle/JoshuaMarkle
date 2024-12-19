@@ -1,7 +1,7 @@
 <h1 align="center">Hi, I'm Joshua 👋</h1>
 <p align="center">
   <b>Welcome to my page!</b><br>
-  <i>I'm absorbing x86 assembly and the RISK-V architecture in my spare time.</i>
+  <i>I'm grinding Advent of Code in my spare time.</i>
 </p>
 
 ### Some Stuff I like

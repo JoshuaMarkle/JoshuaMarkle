@@ -46,13 +46,13 @@
       <img src="https://img.shields.io/badge/VirtualBox-%20?style=flat-square&logo=virtualbox&logoColor=FFFFFF&labelColor=2F61B4&color=2F61B4" alt="VirtualBox Badge">
       <img src="https://img.shields.io/badge/Unity-FFF?logo=unity&logoColor=000&style=flat-square" alt="Unity Badge">
       <img src="https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=fff&style=flat-square" alt="Jupyter Badge">
-      <img src="https://img.shields.io/badge/Zshell-%20?style=flat-square&logo=zsh&logoColor=fff&labelColor=000&color=000" alt="Zshell Badge">
     </th>
   </tr>
   <tr>
     <th>Workflow</th>
     <th>
       <img src="https://img.shields.io/badge/TMUX-white?style=flat-square&logo=tmux" alt="Tmux Badge">
+      <img src="https://img.shields.io/badge/Zshell-%20?style=flat-square&logo=zsh&logoColor=fff&labelColor=000&color=000" alt="Zshell Badge">
       <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat-square" alt="Git Badge">
       <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat-square" alt="GitHub Badge">
       <img src="https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=000&style=flat-square" alt="Firebase Badge">

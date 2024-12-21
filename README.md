@@ -2,19 +2,22 @@
   <img src=".github/assets/header.svg" width="100%" height="100%" alt="profile_header">
 </div>
 
-### Some Stuff I like
+### # Awesome Languages ⚡
 
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat-square)
 ![C++ Badge](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=flat-square)
+![Bash Badge](https://img.shields.io/badge/Bash%20Script-4EAA25?logo=gnubash&logoColor=fff&style=flat-square)
+![Assembly Badge](https://img.shields.io/badge/x86%20Assembly-%20?style=flat-square&logo=atandt&logoColor=FFFFFF&labelColor=009FDB&color=009FDB)
+![Lua Badge](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=fff&style=flat-square)
+![Dart Badge](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=fff&style=flat-square)
 ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat-square)
 ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat-square)
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square)
-![Dart Badge](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=fff&style=flat-square)
-![Lua Badge](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=fff&style=flat-square)
-![Bash Badge](https://img.shields.io/badge/Bash%20Script-4EAA25?logo=gnubash&logoColor=fff&style=flat-square)
 ![LaTeX Badge](https://img.shields.io/badge/LaTeX-008080?logo=latex&logoColor=fff&style=flat-square)
 ![Markdown Badge](https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=flat-square)
 ![Org Badge](https://img.shields.io/badge/Org%20Mode-red?style=flat-square&logo=org&logoColor=fff&color=%2377AA99)
+
+### # Familiar & Loving ❤️
 
 ![Arch Linux Badge](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=archlinux&logoColor=fff&style=flat-square)
 ![Emacs Badge](https://img.shields.io/badge/Emacs-7F5AB6?style=flat-square&logo=gnu%20emacs&logoColor=fff)
@@ -29,6 +32,7 @@
 ![Itch.io](https://img.shields.io/badge/Itch.io-FA5C5C?style=flat-square&logo=itchdotio&logoColor=white)
 ![Firebase Badge](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=000&style=flat-square)
 
+### # Learning 🤔
 ![Nix Badge](https://img.shields.io/badge/NixOS-red?style=flat-square&logo=nixos&logoColor=fff&color=%235277C3)
 ![PyTorch Badge](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=fff&style=flat-square)
 ![TensorFlow Badge](https://img.shields.io/badge/TensorFlow-FF6F00?logo=tensorflow&logoColor=fff&style=flat-square)

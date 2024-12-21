@@ -1,8 +1,6 @@
-<h1 align="center">Hi, I'm Joshua 👋</h1>
-<p align="center">
-  <b>Welcome to my page!</b><br>
-  <i>I'm grinding Advent of Code in my spare time.</i>
-</p>
+<div align="center">
+  <img src=".github/assets/header.svg" width="100%" height="100%" alt="profile_header">
+</div>
 
 ### Some Stuff I like
 

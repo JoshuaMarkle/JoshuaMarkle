@@ -9,27 +9,17 @@
 
 			@keyframes type-text {
 				0%     { content: "_"; }
-				6.67%  { content: "H_"; }
-				13.33% { content: "Ha_"; }
-				20%    { content: "Hap_"; }
-				26.67% { content: "Happ_"; }
-				33.33% { content: "Happy_"; }
-				40%    { content: "Happy N_"; }
-				46.67% { content: "Happy Ne_"; }
-				53.33% { content: "Happy New_"; }
-				60%    { content: "Happy New _"; }
-				66.67% { content: "Happy New Y_"; }
-				73.33% { content: "Happy New Ye_"; }
-				80%    { content: "Happy New Yea_"; }
-				86.67% { content: "Happy New Year_"; }
-				93.33% { content: "Happy New Year"; }
-				100%   { content: "Happy New Year_"; }
+				20%    { content: "H_"; }
+				40%    { content: "Ho_"; }
+				60%    { content: "How_"; }
+				80%    { content: "Howd_"; }
+				100%   { content: "Howdy_"; }
 			}
 
 			@keyframes underline-blink {
-				0%   { content: "Happy New Year_"; }
-				50%  { content: "Happy New Year "; }
-				100% { content: "Happy New Year_"; }
+				0%   { content: "Howdy_"; }
+				50%  { content: "Howdy "; }
+				100% { content: "Howdy_"; }
 			}
 
 			@keyframes welcome-wave {
@@ -179,7 +169,7 @@
 					<h2></h2>
 				</div>
 				<div class="hobby">
-					In my free time I'm grinding the Advent of Code
+					In my free time I'm making the perfect grilled cheese
 				</div>
 			</div>
     	</div>

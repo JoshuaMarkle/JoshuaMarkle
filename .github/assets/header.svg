@@ -83,7 +83,7 @@
 
 			.typewriter {
 				position: relative;
-				height: 120px;
+				height: 80px;
 				font-size: 25px;
 			}
 
@@ -101,8 +101,8 @@
 				height: 100%;
 				left: 0;
 				top: 0;
-				animation: 	type-text 2s linear 1.5s,
-							underline-blink 1.5s steps(1) infinite 3.5s;
+				animation: 	type-text .5s linear .5s,
+							underline-blink 1.5s steps(1) infinite 1s;
 				animation-fill-mode: forwards;
 			}
 
@@ -119,25 +119,25 @@
 
 
 			.author {
-				margin-top: 10px;
+				margin-top: 20px;
 				text-align: left;
 				color: #0080f2;
 				font-size: 15px;
 			}
 
-			.tree {
+			.arch {
 				font-family: "Iosevka Elenapan",
 				font-weight: bold;
 				text-align: left;
-				font-size: 15px;
+				font-size: 12px;
 				color: green;
 			}
 
-			.tree .red { color: red; }
-			.tree .orange { color: orange; }
-			.tree .yellow { color: yellow; }
-			.tree .blue { color: blue; }
-			.tree .brown { color: brown; }
+			.arch .red { color: red; }
+			.arch .orange { color: orange; }
+			.arch .yellow { color: yellow; }
+			.arch .blue { color: #0080f2; }
+			.arch .brown { color: brown; }
 
 			.hobby {
 				color: gray;
@@ -147,14 +147,14 @@
 			</style>
 			<div class="container">
 				<div class="row">
-					<div class="tree">
-						<span style="display: block; white-space: pre;" class="yellow">   \|/</span>
-						<span style="display: block; white-space: pre;" class="yellow">  --*--</span>
-						<span style="display: block; white-space: pre;">   &gt;<span class="orange">0</span>&lt;</span>
-						<span style="display: block; white-space: pre;">  &gt;&gt;&lt;<span class="blue">o</span>&lt;</span>
-						<span style="display: block; white-space: pre;"> &gt;&gt;<span class="red">@</span>&gt;&gt;<span class="yellow">*</span>&lt;</span>
-						<span style="display: block; white-space: pre;">&gt;<span class="blue">o</span>&lt;&lt;<span class="yellow">*</span>&gt;&gt;<span class="red">O</span>&lt;</span>
-						<span style="display: block; white-space: pre;" class="brown">   | |</span>
+					<div class="arch">
+						<span style="display: block; white-space: pre;" class="blue">      /\</span>
+						<span style="display: block; white-space: pre;" class="blue">     /  \</span>
+						<span style="display: block; white-space: pre;" class="blue">    /\   \</span>
+						<span style="display: block; white-space: pre;" class="blue">   /      \</span>
+						<span style="display: block; white-space: pre;" class="blue">  /   ,,   \</span>
+						<span style="display: block; white-space: pre;" class="blue"> /   |  |  -\</span>
+						<span style="display: block; white-space: pre;" class="blue">/_-''    ''-_\</span>
 					</div>
 					<div class="title">
 						<div class="author">

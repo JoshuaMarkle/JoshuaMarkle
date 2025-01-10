@@ -84,7 +84,7 @@
 			.typewriter {
 				position: relative;
 				height: 80px;
-				font-size: 25px;
+				font-size: 35px;
 			}
 
 			h2 {
@@ -119,10 +119,10 @@
 
 
 			.author {
-				margin-top: 20px;
+				margin-top: 10px;
 				text-align: left;
 				color: #0080f2;
-				font-size: 15px;
+				font-size: 20px;
 			}
 
 			.arch {

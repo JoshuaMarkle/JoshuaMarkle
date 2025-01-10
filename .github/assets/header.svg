@@ -9,27 +9,27 @@
 
 			@keyframes type-text {
 				0%     { content: "_"; }
-				6.67%  { content: "M_"; }
-				13.33% { content: "Me_"; }
-				20%    { content: "Mer_"; }
-				26.67% { content: "Merr_"; }
-				33.33% { content: "Merry_"; }
-				40%    { content: "Merry C_"; }
-				46.67% { content: "Merry Ch_"; }
-				53.33% { content: "Merry Chr_"; }
-				60%    { content: "Merry Chri_"; }
-				66.67% { content: "Merry Chris_"; }
-				73.33% { content: "Merry Christ_"; }
-				80%    { content: "Merry Christm_"; }
-				86.67% { content: "Merry Christma_"; }
-				93.33% { content: "Merry Christmas_"; }
-				100%   { content: "Merry Christmas"; }
+				6.67%  { content: "H_"; }
+				13.33% { content: "Ha_"; }
+				20%    { content: "Hap_"; }
+				26.67% { content: "Happ_"; }
+				33.33% { content: "Happy_"; }
+				40%    { content: "Happy N_"; }
+				46.67% { content: "Happy Ne_"; }
+				53.33% { content: "Happy New_"; }
+				60%    { content: "Happy New _"; }
+				66.67% { content: "Happy New Y_"; }
+				73.33% { content: "Happy New Ye_"; }
+				80%    { content: "Happy New Yea_"; }
+				86.67% { content: "Happy New Year_"; }
+				93.33% { content: "Happy New Year"; }
+				100%   { content: "Happy New Year_"; }
 			}
 
 			@keyframes underline-blink {
-				0%   { content: "Merry Christmas"; }
-				50%  { content: "Merry Christmas_"; }
-				100% { content: "Merry Christmas"; }
+				0%   { content: "Happy New Year_"; }
+				50%  { content: "Happy New Year "; }
+				100% { content: "Happy New Year_"; }
 			}
 
 			@keyframes welcome-wave {

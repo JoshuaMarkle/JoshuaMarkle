@@ -22,26 +22,10 @@
 				100% { content: "Howdy_"; }
 			}
 
-			@keyframes welcome-wave {
-				0%     { content: "WELCome to my page!"; }
-				5.56%  { content: "WELCOme to my page!"; }
-				11.12% { content: "WeLCOMe to my page!"; }
-				16.68% { content: "WelCOME to my page!"; }
-				22.24% { content: "WelcOME to my page!"; }
-				27.80% { content: "WelcoME To my page!"; }
-				33.36% { content: "WelcomE TO my page!"; }
-				38.92% { content: "Welcome TO my page!"; }
-				44.48% { content: "Welcome TO My page!"; }
-				50.04% { content: "Welcome tO MY page!"; }
-				55.60% { content: "Welcome to MY page!"; }
-				61.16% { content: "Welcome to MY Page!"; }
-				66.72% { content: "Welcome to mY PAge!"; }
-				72.28% { content: "Welcome to my PAGe!"; }
-				77.84% { content: "Welcome to my PAGE!"; }
-				83.40% { content: "Welcome to my pAGE!"; }
-				88.96% { content: "WElcome to my paGE!"; }
-				94.52% { content: "WELcome to my pagE!"; }
-				100%   { content: "WELCome to my page!"; }
+			@keyframes sine-wave {
+				0% { transform: translateY(0px); }
+				50% { transform: translateY(7px); }
+				100% { transform: translateY(0px); }
 			}
 
 			.container {
@@ -106,17 +90,18 @@
 				animation-fill-mode: forwards;
 			}
 
-			.welcome h2:before {
-				text-align: left;
-				content: "";
-				width: 100%;
-				height: 100%;
-				left: 0;
-				top: 0;
-				animation: welcome-wave 1.5s steps(1) infinite;
-				animation-fill-mode: forwards;
+			.welcome {
+				font-size: 25px;
+				display: flex;
+				justify-content: center;
+				gap: 2px;
 			}
 
+			.welcome span {
+				display: inline-block;
+				animation: sine-wave 1.5s infinite ease-in-out;
+				animation-delay: calc(var(--delay) * 0.1s);
+			}
 
 			.author {
 				margin-top: 10px;
@@ -133,28 +118,28 @@
 				color: green;
 			}
 
-			.arch .red { color: red; }
-			.arch .orange { color: orange; }
-			.arch .yellow { color: yellow; }
-			.arch .blue { color: #0080f2; }
-			.arch .brown { color: brown; }
-
+			.arch * { color: #0080f2; }
 			.hobby {
+				margin-top: 10px;
 				color: gray;
 				font-style: italic;
+			}
+
+			.space {
+				width: 10px;
 			}
 
 			</style>
 			<div class="container">
 				<div class="row">
 					<div class="arch">
-						<span style="display: block; white-space: pre;" class="blue">      /\</span>
-						<span style="display: block; white-space: pre;" class="blue">     /  \</span>
-						<span style="display: block; white-space: pre;" class="blue">    /\   \</span>
-						<span style="display: block; white-space: pre;" class="blue">   /      \</span>
-						<span style="display: block; white-space: pre;" class="blue">  /   ,,   \</span>
-						<span style="display: block; white-space: pre;" class="blue"> /   |  |  -\</span>
-						<span style="display: block; white-space: pre;" class="blue">/_-''    ''-_\</span>
+						<span style="display: block; white-space: pre;">      /\</span>
+						<span style="display: block; white-space: pre;">     /  \</span>
+						<span style="display: block; white-space: pre;">    /\   \</span>
+						<span style="display: block; white-space: pre;">   /      \</span>
+						<span style="display: block; white-space: pre;">  /   ,,   \</span>
+						<span style="display: block; white-space: pre;"> /   |  |  -\</span>
+						<span style="display: block; white-space: pre;">/_-''    ''-_\</span>
 					</div>
 					<div class="title">
 						<div class="author">
@@ -166,8 +151,27 @@
 					</div>
 				</div>
 				<div class="welcome">
-					<h2></h2>
-				</div>
+					<!-- Welcome To My Page! -->
+					<span style="--delay: 0;">W</span>
+					<span style="--delay: 1;">e</span>
+					<span style="--delay: 2;">l</span>
+					<span style="--delay: 3;">c</span>
+					<span style="--delay: 4;">o</span>
+					<span style="--delay: 5;">m</span>
+					<span style="--delay: 6;">e</span>
+					<span class="space"></span>
+					<span style="--delay: 8;">T</span>
+					<span style="--delay: 9;">o</span>
+					<span class="space"></span>
+					<span style="--delay: 11;">M</span>
+					<span style="--delay: 12;">y</span>
+					<span class="space"></span>
+					<span style="--delay: 14;">P</span>
+					<span style="--delay: 15;">a</span>
+					<span style="--delay: 16;">g</span>
+					<span style="--delay: 17;">e</span>
+					<span style="--delay: 18;">!</span>
+				  </div>
 				<div class="hobby">
 					In my free time I'm making the perfect grilled cheese
 				</div>

@@ -88,8 +88,13 @@ def sway(name, fx, fy, seed, dur, dx, dy):
 # kept small: a jump past the filter's edge would leave a strip with no grain, which multiplies to black
 JUMPS = [(0, 0), (17, 6), (-9, 13), (25, -7), (-20, -14), (7, 23), (31, 11), (-25, 3)]
 
-def vhs(inp, W, H, M, px=1.0, pitch=4, weave=0.45, grain=0.9, jolt=5):
-    """px: canvas units to one pixel as shown, so lines and grain come out the same size everywhere"""
+def vhs(inp, W, H, M, px=1.0, pitch=4, weave=0.45, grain=0.9, jolt=5, flicker=True):
+    """px: canvas units to one pixel as shown, so lines and grain come out the same size everywhere.
+    flicker: the grain jumps a dozen times a second; without it the grain holds still"""
+    flick = f'''<feOffset in="g0" result="g1">
+        <animate attributeName="dx" values="{';'.join(f'{j[0]*px:g}' for j in JUMPS)}" dur="{len(JUMPS)/12:.3f}s" calcMode="discrete" repeatCount="indefinite"/>
+        <animate attributeName="dy" values="{';'.join(f'{j[1]*px:g}' for j in JUMPS)}" dur="{len(JUMPS)/12:.3f}s" calcMode="discrete" repeatCount="indefinite"/>
+      </feOffset>''' if flicker else '<feOffset in="g0" result="g1"/>'
     P = pitch * px
     out = ""
     if jolt:
@@ -117,10 +122,7 @@ def vhs(inp, W, H, M, px=1.0, pitch=4, weave=0.45, grain=0.9, jolt=5):
 
       <!-- grain: multiplies the light, so it is gone on true black -->
       <feTurbulence type="fractalNoise" baseFrequency="{0.85/px:.3f}" numOctaves="1" seed="5" result="g0"/>
-      <feOffset in="g0" result="g1">
-        <animate attributeName="dx" values="{';'.join(f'{j[0]*px:g}' for j in JUMPS)}" dur="{len(JUMPS)/12:.3f}s" calcMode="discrete" repeatCount="indefinite"/>
-        <animate attributeName="dy" values="{';'.join(f'{j[1]*px:g}' for j in JUMPS)}" dur="{len(JUMPS)/12:.3f}s" calcMode="discrete" repeatCount="indefinite"/>
-      </feOffset>
+      {flick}
       <feColorMatrix in="g1" type="matrix" values="0.55 0.15 0.15 0 0  0.15 0.55 0.15 0 0  0.15 0.15 0.55 0 0  0 0 0 0 1" result="g2"/>
       <feComposite in="woven" in2="g2" operator="arithmetic" k1="{grain*2}" k2="{1-grain*0.85:.3f}"/>'''
     return out
@@ -194,19 +196,19 @@ def halo_svg(d, W, H, title, s=1.0, warp=30, px=1.0, jolt=5, heat=1.0, transform
 # ---------- the divider: a squared-off bar of the heat itself, on black ----------
 def divider_svg(W=1200, H=40, px=1.45):
     """H 40 at 1200 wide comes out about as tall as a for-the-badge badge in a README"""
-    T = 600
+    T = 1800
     box = (-T, 0, W + 2 * T, H)
-    # streaks: many cells across, one down, sliding sideways in opposite directions
-    n1 = noise("n1", box, T, H, 4, 1, 7, "21s", 1, 0)
-    n2 = noise("n2", box, 400, H, 7, 1, 19, "13s", -1, 0)
+    # streaks: a few cells across, one down, sliding sideways in opposite directions
+    n1 = noise("n1", box, T, H, 4, 1, 7, "63s", 1, 0)
+    n2 = noise("n2", box, 1200, H, 7, 1, 19, "39s", -1, 0)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
   <defs>
     <filter id="bar" filterUnits="userSpaceOnUse" x="{-T}" y="0" width="{W+2*T}" height="{H}" color-interpolation-filters="sRGB">{n1}{n2}
       <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.62" k3="0.38" result="nn"/>
-      <!-- spread the noise over the whole palette: black gaps, violet, and red to amber where it runs hot -->
-      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.4 0 0 0 -1.25" result="v"/>
+      <!-- kept low in the palette: black gaps and violet, warming only now and then -->
+      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.1 0 0 0 -0.6" result="v"/>
       <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>
-      {palette_transfer("col")}{vhs("col", W, H, T, px=px, jolt=0)}
+      {palette_transfer("col")}{vhs("col", W, H, T, px=px, jolt=0, flicker=False)}
     </filter>
   </defs>
   <rect width="{W}" height="{H}" fill="#000" filter="url(#bar)"/>
@@ -243,8 +245,10 @@ def bead_svg(R=300, px=1.6):
     </radialGradient>
     <filter id="marble" filterUnits="userSpaceOnUse" x="{-M}" y="{-M}" width="{R+2*M}" height="{R+2*M}" color-interpolation-filters="sRGB">{swirl}
       <!-- the noise drags the gradient into swirls, then it goes through the palette -->
-      <feDisplacementMap in="SourceGraphic" in2="sw" scale="{R*0.42:g}" xChannelSelector="R" yChannelSelector="G" result="grey"/>
-      {palette_transfer("col", lo=0.36, hi=0.92)}
+      <feDisplacementMap in="SourceGraphic" in2="sw" scale="{R*0.42:g}" xChannelSelector="R" yChannelSelector="G" result="grey0"/>
+      <!-- pulled apart: the low half sinks to black, the high half runs hot -->
+      <feComponentTransfer in="grey0" result="grey"><feFuncR type="linear" slope="1.7" intercept="-0.45"/><feFuncG type="linear" slope="1.7" intercept="-0.45"/><feFuncB type="linear" slope="1.7" intercept="-0.45"/></feComponentTransfer>
+      {palette_transfer("col", lo=0.0, hi=0.95)}
     </filter>
     <filter id="soft" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="{R*0.02:g}"/></filter>
     <filter id="tape" filterUnits="userSpaceOnUse" x="{-M}" y="{-M}" width="{R+2*M}" height="{R+2*M}" color-interpolation-filters="sRGB">{vhs("SourceGraphic", R, R, M, px=px, jolt=4)}{CLEAR}

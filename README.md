@@ -16,10 +16,12 @@
   </tr>
   <tr>
     <td width="64%" valign="top">
+      <br>
       <p><b>Programmer, artist, entrepreneur, tinkerer, type nerd.</b> Computer science student at UVA.</p>
       <p>I am passionate and obsessive about fitness, programming, business, and philosophy.</p>
       <p>Outside of academia, I race on the triathlon team, surf and snowboard whenever I can, and read a lot about psychology and technology.</p>
       <p>I'm currently looking for internships and job opportunities. Reach me at <a href="mailto:joshuamarkle25@gmail.com">joshuamarkle25@gmail.com</a> or check out my <a href="https://joshuamarkle.com/JoshuaMarkleResume.pdf">resume</a>.</p>
+      <br>
     </td>
     <td width="36%" align="center"><img src=".github/assets/bead.svg" width="230" alt=""></td>
   </tr>

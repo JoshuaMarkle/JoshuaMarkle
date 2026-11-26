@@ -3,12 +3,12 @@
   <defs>
     <filter id="halo" filterUnits="userSpaceOnUse" x="-640" y="-640" width="2480" height="1840" color-interpolation-filters="sRGB">
       <!-- heat: two layers of boiling noise, pushed hard so the light pools in patches -->
-    <feTurbulence type="fractalNoise" baseFrequency="0.00277778 0.00238095" numOctaves="2" seed="7" result="n1r"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.00277778 0.00238095" numOctaves="1" seed="7" result="n1r"/>
     <feOffset in="n1r" result="n1">
       <animate attributeName="dx" values="0;480;0" dur="38s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
       <animate attributeName="dy" values="0;-288;0" dur="38s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
     </feOffset>
-    <feTurbulence type="fractalNoise" baseFrequency="0.00583333 0.00595238" numOctaves="2" seed="19" result="n2r"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.00583333 0.00595238" numOctaves="1" seed="19" result="n2r"/>
     <feOffset in="n2r" result="n2">
       <animate attributeName="dx" values="0;-384;0" dur="27s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
       <animate attributeName="dy" values="0;240;0" dur="27s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>

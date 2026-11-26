@@ -4,7 +4,7 @@ Test by going into the main directory and starting up an HTTP server. This can b
 
 ```
 cd ..
-python -m http.sever
+python -m http.server
 ```
 
 From there, navigate to [http://localhost:8000/tests/index.html](http://localhost:8000/tests/index.html).

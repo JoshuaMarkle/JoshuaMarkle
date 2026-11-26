@@ -1,29 +1,83 @@
-<!-- A HTML file to test out the header.svg -->
-
+<!-- Test page for the profile README: the README as GitHub shows it, then each header option with a live
+     frame-rate meter. Serve the repo root (python -m http.server) and open /tests/ -->
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Profile Header</title>
-		<style>
-			body {
-				margin: 0;
-				font-family: Arial, sans-serif;
-			}
-			div {
-				text-align: center;
-			}
-			img {
-				width: 100%;
-				height: 100%;
-				display: block;
-			}
-		</style>
-	</head>
-	<body>
-		<div align="center">
-			<img src="../.github/assets/header.svg" width="100%" height="100%" alt="Header is broken">
-		</div>
-	</body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile README test</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0d1117; color: #e6edf3; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif; }
+  header.bar { position: sticky; top: 0; z-index: 2; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: #010409; border-bottom: 1px solid #30363d; font-size: 14px; }
+  header.bar b { font-weight: 600; }
+  #fps { margin-left: auto; font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; padding: 2px 8px; border-radius: 6px; background: #161b22; border: 1px solid #30363d; }
+  main { max-width: 1012px; margin: 24px auto; padding: 0 16px; }
+  .readme { border: 1px solid #30363d; border-radius: 6px; }
+  .readme .head { padding: 8px 16px; font: 12px ui-monospace, monospace; color: #9198a1; border-bottom: 1px solid #30363d; }
+  .md { padding: 32px; max-width: 830px; }
+  .md table { border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; margin: 0 0 16px; }
+  .md td, .md th { border: 1px solid #3d444d; padding: 6px 13px; }
+  .md h3 { margin: 0.4em 0; font-size: 1.25em; }
+  .md a { color: #4493f8; text-decoration: none; }
+  .md img { max-width: 100%; }
+  .md p { margin: 0 0 16px; }
+  h2 { font-size: 20px; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-top: 48px; }
+  .opts { display: grid; gap: 28px; }
+  .opt { border: 1px solid #30363d; border-radius: 6px; padding: 14px; }
+  .opt .t { display: flex; gap: 12px; align-items: baseline; margin-bottom: 10px; }
+  .opt .t span { color: #9198a1; font-size: 13px; }
+  .opt .t button { margin-left: auto; background: #21262d; color: #e6edf3; border: 1px solid #30363d; border-radius: 6px; padding: 3px 10px; cursor: pointer; }
+  .opt .t button.on { background: #1f6feb; border-color: #1f6feb; }
+  .opt img { width: 100%; display: block; background: #000; }
+  .opt .off { aspect-ratio: 1200 / 553; display: grid; place-items: center; background: #010409; color: #9198a1; font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="bar"><b>Profile README test</b><span>Header in the README: <b id="pick"></b></span><span id="fps">— fps</span></header>
+<main>
+  <section class="readme">
+    <div class="head">JoshuaMarkle / README.md</div>
+    <div class="md" id="md">Loading README…</div>
+  </section>
+
+  <h2>Header options</h2>
+  <p>Only one plays at a time (the page meter reads the one that is on, plus the README above). Turn the README's header off with the button on its option to compare cleanly.</p>
+  <div class="opts" id="opts"></div>
+</main>
+<script>
+// each option: what it is, where it is; sizes are read from the server
+const OPTS = [
+  { id: 'webp', name: 'Baked WebP (in the README)', note: 'captured from joshuamarkle.com, 1200 px, 50 fps, VHS tracking glitch added', src: '../.github/assets/halo.webp' },
+  { id: 'gif', name: 'Baked GIF', note: 'same frames, 960 px, 50 fps, 256 colours', src: '../.github/assets/halo.gif' },
+  { id: 'svg', name: 'Live SVG, optimised', note: 'filters and SMIL, baked noise pictures instead of feTurbulence', src: '../.github/assets/halo.svg' },
+  { id: 'old', name: 'Live SVG, before', note: 'the version that was lagging', src: 'halo-before.svg' },
+];
+let playing = null;
+const box = document.getElementById('opts');
+for (const o of OPTS) {
+  const el = document.createElement('div'); el.className = 'opt';
+  el.innerHTML = `<div class="t"><b>${o.name}</b><span>${o.note}</span><span class="size"></span><button type="button">Play</button></div><div class="off">paused</div>`;
+  box.append(el);
+  fetch(o.src, { method: 'HEAD' }).then((r) => { const n = +r.headers.get('content-length'); if (n) el.querySelector('.size').textContent = n > 1e6 ? (n / 1e6).toFixed(1) + ' MB' : Math.round(n / 1e3) + ' kB'; });
+  el.querySelector('button').onclick = () => {
+    if (playing && playing !== el) { playing.querySelector('button').classList.remove('on'); playing.querySelector('button').textContent = 'Play'; playing.querySelector('img')?.replaceWith(Object.assign(document.createElement('div'), { className: 'off', textContent: 'paused' })); }
+    const b = el.querySelector('button');
+    if (b.classList.toggle('on')) { b.textContent = 'Stop'; el.querySelector('.off').replaceWith(Object.assign(new Image(), { src: o.src, alt: o.name })); playing = el; }
+    else { b.textContent = 'Play'; el.querySelector('img').replaceWith(Object.assign(document.createElement('div'), { className: 'off', textContent: 'paused' })); playing = null; }
+  };
+}
+
+// the README itself, as GitHub would lay it out (it is HTML already, bar its relative paths)
+fetch('../README.md').then((r) => r.text()).then((t) => {
+  const md = document.getElementById('md');
+  md.innerHTML = t.replace(/src="\.github\//g, 'src="../.github/');
+  const h = md.querySelector('img'); document.getElementById('pick').textContent = h ? h.getAttribute('src').split('/').pop() : '?';
+});
+
+// frames per second, over the last second
+const out = document.getElementById('fps'); let n = 0, t0 = performance.now();
+(function tick(t) { n++; if (t - t0 >= 1000) { out.textContent = `${Math.round((n * 1000) / (t - t0))} fps`; n = 0; t0 = t; } requestAnimationFrame(tick); })(t0);
+</script>
+</body>
 </html>

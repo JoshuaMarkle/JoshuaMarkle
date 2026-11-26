@@ -76,9 +76,10 @@ def noise(name, box, tw, th, cx, cy, seed, dur, dx, dy):
     </feOffset>'''
 
 def sway(name, fx, fy, seed, dur, dx, dy):
-    """noise too big to tile in the margin: it drifts out and back instead of sliding round"""
+    """noise too big to tile in the margin: it drifts out and back instead of sliding round.
+    One octave: the heat is thresholded and blurred, so the second is hardly seen, and it is ~10% of the frame"""
     return f'''
-    <feTurbulence type="fractalNoise" baseFrequency="{fx:.6g} {fy:.6g}" numOctaves="2" seed="{seed}" result="{name}r"/>
+    <feTurbulence type="fractalNoise" baseFrequency="{fx:.6g} {fy:.6g}" numOctaves="1" seed="{seed}" result="{name}r"/>
     <feOffset in="{name}r" result="{name}">
       <animate attributeName="dx" values="0;{dx:g};0" dur="{dur}" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
       <animate attributeName="dy" values="0;{dy:g};0" dur="{dur}" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>

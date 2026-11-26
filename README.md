@@ -1,5 +1,5 @@
 <div align="center">
-	<img src=".github/assets/halo.webp" width="100%" alt="Joshua Markle">
+	<img src=".github/assets/halo.svg" width="100%" alt="Joshua Markle">
 </div>
 
 <table>

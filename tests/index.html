@@ -48,10 +48,8 @@
 <script>
 // each option: what it is, where it is; sizes are read from the server
 const OPTS = [
-  { id: 'webp', name: 'Baked WebP (in the README)', note: 'captured from joshuamarkle.com, 1200 px, 50 fps, VHS tracking glitch added', src: '../.github/assets/halo.webp' },
-  { id: 'gif', name: 'Baked GIF', note: 'same frames, 960 px, 50 fps, 256 colours', src: '../.github/assets/halo.gif' },
-  { id: 'svg', name: 'Live SVG, optimised', note: 'filters and SMIL, baked noise pictures instead of feTurbulence', src: '../.github/assets/halo.svg' },
-  { id: 'old', name: 'Live SVG, before', note: 'the version that was lagging', src: 'halo-before.svg' },
+  { id: 'svg', name: 'Live SVG (in the README)', note: 'filters and SMIL, one-octave heat noise', src: '../.github/assets/halo.svg' },
+  { id: 'old', name: 'Live SVG, before', note: 'two-octave heat noise, for comparison', src: 'halo-before.svg' },
 ];
 let playing = null;
 const box = document.getElementById('opts');

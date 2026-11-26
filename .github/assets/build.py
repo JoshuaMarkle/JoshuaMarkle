@@ -206,8 +206,8 @@ def divider_svg(W=1200, H=40, px=1.45):
   <defs>
     <filter id="bar" filterUnits="userSpaceOnUse" x="{-T}" y="0" width="{W+2*T}" height="{H}" color-interpolation-filters="sRGB">{n1}{n2}
       <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.62" k3="0.38" result="nn"/>
-      <!-- kept low in the palette: black gaps and violet, warming only now and then -->
-      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.1 0 0 0 -0.6" result="v"/>
+      <!-- mostly black: only the top of the noise shows, violet, warming now and then -->
+      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  4 0 0 0 -2.1" result="v"/>
       <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>
       {palette_transfer("col")}{vhs("col", W, H, T, px=px, jolt=0, flicker=False)}
     </filter>
@@ -248,7 +248,7 @@ def bead_svg(R=300, px=1.6):
       <!-- the noise drags the gradient into swirls, then it goes through the palette -->
       <feDisplacementMap in="SourceGraphic" in2="sw" scale="{R*0.42:g}" xChannelSelector="R" yChannelSelector="G" result="grey0"/>
       <!-- pulled apart: the low half sinks to black, the high half runs hot -->
-      <feComponentTransfer in="grey0" result="grey"><feFuncR type="linear" slope="1.7" intercept="-0.45"/><feFuncG type="linear" slope="1.7" intercept="-0.45"/><feFuncB type="linear" slope="1.7" intercept="-0.45"/></feComponentTransfer>
+      <feComponentTransfer in="grey0" result="grey"><feFuncR type="linear" slope="1.8" intercept="-0.75"/><feFuncG type="linear" slope="1.8" intercept="-0.75"/><feFuncB type="linear" slope="1.8" intercept="-0.75"/></feComponentTransfer>
       {palette_transfer("col", lo=0.0, hi=0.95)}
     </filter>
     <filter id="soft" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="{R*0.02:g}"/></filter>

@@ -93,30 +93,43 @@ def noise(name, tw, th, fx, fy, seed, dur, dx, dy):
     </feOffset>'''
 
 M = 640
+WARP = 30            # how far the letters bend, px (0 to keep them straight)
+PITCH = 4            # VHS line spacing, px
+WEAVE = 0.45         # how dark the lines cut
+GRAIN = 0.9          # film grain strength
+JOLT = 5             # tracking glitch: sideways jolt of the band that rolls down, px
 # tiles sized so baseFrequency * tile is a whole number (needed for stitching to be exact)
 n1 = noise("n1", 600, 560, 5/600, 4/560, 7, "26s", 1, -1)
 n2 = noise("n2", 400, 280, 7/400, 5/280, 19, "17s", -1, 1)
+wn = noise("wn", 600, 560, 2/600, 2/560, 31, "34s", -1, -1)
+
+# grain: one field of fine noise, jumped to a new place a dozen times a second
+jumps = [(0, 0), (173, 61), (-91, 137), (251, -77), (-203, -149), (67, 229), (311, 113), (-257, 31)]
+grain_dur = f"{len(jumps) / 12:.3f}s"
 
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
   <title>Joshua Markle</title>
   <defs>
     <filter id="halo" filterUnits="userSpaceOnUse" x="{-M}" y="{-M}" width="{W+2*M}" height="{H+2*M}" color-interpolation-filters="sRGB">
-      <!-- heat: two layers of boiling noise, pushed hard so the light pools in patches -->{n1}{n2}
+      <!-- heat: two layers of boiling noise, pushed hard so the light pools in patches -->{n1}{n2}{wn}
       <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.74" k3="0.26" result="nn"/>
       <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -1.15" result="heat"/>
 
+      <!-- the letters bend: slow noise pushes every point of them about -->
+      <feDisplacementMap in="SourceAlpha" in2="wn" scale="{WARP}" xChannelSelector="R" yChannelSelector="G" result="src"/>
+
       <!-- distance from the letters, four ways -->
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="b0"/>
-      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="b1"/>
-      <feGaussianBlur in="SourceAlpha" stdDeviation="16" result="b2"/>
-      <feGaussianBlur in="SourceAlpha" stdDeviation="46" result="b3"/>
+      <feGaussianBlur in="src" stdDeviation="1.6" result="b0"/>
+      <feGaussianBlur in="src" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="src" stdDeviation="16" result="b2"/>
+      <feGaussianBlur in="src" stdDeviation="46" result="b3"/>
 
       <!-- body of the glow: a violet rim everywhere, widening and heating where the noise runs hot -->
       <feComposite in="b2" in2="heat" operator="arithmetic" k1="1.45" result="hb2"/>
       <feComposite in="b3" in2="heat" operator="arithmetic" k1="1.6" result="hb3"/>
       <feComposite in="b1" in2="hb2" operator="arithmetic" k2="0.8" k3="1" result="g1"/>
       <feComposite in="g1" in2="hb3" operator="arithmetic" k2="1" k3="1" result="body"/>
-      <feComposite in="body" in2="SourceAlpha" operator="out" result="outer"/>
+      <feComposite in="body" in2="src" operator="out" result="outer"/>
 
       <!-- the hairline round every letter: b0*(1-b0) peaks right on the edge -->
       <feComposite in="b0" in2="b0" operator="arithmetic" k1="-2" k2="1" k3="1" result="edge"/>
@@ -124,11 +137,39 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
 
       <!-- heat to colour: alpha becomes grey, grey goes through the palette and the film -->
       <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>
-      <feComponentTransfer in="grey">
+      <feComponentTransfer in="grey" result="col">
         {ch_anims[0]}
         {ch_anims[1]}
         {ch_anims[2]}
       </feComponentTransfer>
+
+      <!-- tracking: a soft band rolls down the picture and shoves what it passes sideways -->
+      <feFlood flood-color="#808080" result="mid"/>
+      <feFlood flood-color="#ff8080" x="{-M}" width="{W+2*M}" height="26" y="-60" result="band0">
+        <animate attributeName="y" values="-60;-60;{H+40}" keyTimes="0;0.62;1" dur="9s" repeatCount="indefinite"/>
+      </feFlood>
+      <feGaussianBlur in="band0" stdDeviation="0 9" result="band1"/>
+      <feMerge result="bandmap"><feMergeNode in="mid"/><feMergeNode in="band1"/></feMerge>
+      <feDisplacementMap in="col" in2="bandmap" scale="{JOLT*4}" xChannelSelector="R" yChannelSelector="G" result="tracked"/>
+
+      <!-- VHS lines: a row every few px, its threads cut at random -->
+      <feFlood flood-color="#fff" x="0" y="0" width="{W}" height="{PITCH*0.5}" result="ln0"/>
+      <feMerge x="0" y="0" width="{W}" height="{PITCH}" result="ln1"><feMergeNode in="ln0"/></feMerge>
+      <feTile in="ln1" result="lines"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.09 {1/PITCH:.3f}" numOctaves="1" seed="3" result="cut0"/>
+      <feColorMatrix in="cut0" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.8 0 0 0 -0.25" result="cut"/>
+      <feComposite in="lines" in2="cut" operator="arithmetic" k1="0.55" k2="0.45" result="th"/>
+      <feColorMatrix in="th" type="matrix" values="0 0 0 -{WEAVE} 1  0 0 0 -{WEAVE} 1  0 0 0 -{WEAVE} 1  0 0 0 0 1" result="weave"/>
+      <feComposite in="tracked" in2="weave" operator="arithmetic" k1="1" result="woven"/>
+
+      <!-- grain: multiplies the light, so it is gone on true black -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="5" result="g0"/>
+      <feOffset in="g0" result="g1">
+        <animate attributeName="dx" values="{';'.join(str(j[0]) for j in jumps)}" dur="{grain_dur}" calcMode="discrete" repeatCount="indefinite"/>
+        <animate attributeName="dy" values="{';'.join(str(j[1]) for j in jumps)}" dur="{grain_dur}" calcMode="discrete" repeatCount="indefinite"/>
+      </feOffset>
+      <feColorMatrix in="g1" type="matrix" values="0.55 0.15 0.15 0 0  0.15 0.55 0.15 0 0  0.15 0.15 0.55 0 0  0 0 0 0 1" result="g2"/>
+      <feComposite in="woven" in2="g2" operator="arithmetic" k1="{GRAIN*2}" k2="{1-GRAIN*0.85:.3f}"/>
     </filter>
     <path id="name" d="{d}"/>
   </defs>

@@ -1,5 +1,5 @@
 <div align="center">
-	<img src=".github/assets/header.svg" width="100%" height="100%" alt="profile_header">
+	<img src=".github/assets/halo.svg" width="100%" alt="Joshua Markle">
 </div>
 
 ### # Languages ⚡

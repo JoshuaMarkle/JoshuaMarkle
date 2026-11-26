@@ -1,50 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="1200" height="120">
-  <title></title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" width="1200" height="40">
   <defs>
-    <filter id="halo" filterUnits="userSpaceOnUse" x="-352" y="-352" width="1904" height="824" color-interpolation-filters="sRGB">
-      <!-- heat: two layers of boiling noise, pushed hard so the light pools in patches -->
-    <feTurbulence type="fractalNoise" baseFrequency="0.0151515 0.012987" numOctaves="2" seed="7" stitchTiles="stitch" x="0" y="0" width="330" height="308" result="n1t"/>
-    <feTile in="n1t" x="-352" y="-352" width="1904" height="824" result="n1r"/>
+    <filter id="bar" filterUnits="userSpaceOnUse" x="-600" y="0" width="2400" height="40" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.00666667 0.025" numOctaves="2" seed="7" stitchTiles="stitch" x="0" y="0" width="600" height="40" result="n1t"/>
+    <feTile in="n1t" x="-600" y="0" width="2400" height="40" result="n1r"/>
     <feOffset in="n1r" result="n1">
-      <animate attributeName="dx" from="0" to="330" dur="26s" repeatCount="indefinite"/>
-      <animate attributeName="dy" from="0" to="-308" dur="26s" repeatCount="indefinite"/>
+      <animate attributeName="dx" from="0" to="600" dur="21s" repeatCount="indefinite"/>
+      <animate attributeName="dy" from="0" to="0" dur="21s" repeatCount="indefinite"/>
     </feOffset>
-    <feTurbulence type="fractalNoise" baseFrequency="0.0318182 0.0324675" numOctaves="2" seed="19" stitchTiles="stitch" x="0" y="0" width="220" height="154" result="n2t"/>
-    <feTile in="n2t" x="-352" y="-352" width="1904" height="824" result="n2r"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.0175 0.025" numOctaves="2" seed="19" stitchTiles="stitch" x="0" y="0" width="400" height="40" result="n2t"/>
+    <feTile in="n2t" x="-600" y="0" width="2400" height="40" result="n2r"/>
     <feOffset in="n2r" result="n2">
-      <animate attributeName="dx" from="0" to="-220" dur="17s" repeatCount="indefinite"/>
-      <animate attributeName="dy" from="0" to="154" dur="17s" repeatCount="indefinite"/>
+      <animate attributeName="dx" from="0" to="-400" dur="13s" repeatCount="indefinite"/>
+      <animate attributeName="dy" from="0" to="0" dur="13s" repeatCount="indefinite"/>
     </feOffset>
-    <feTurbulence type="fractalNoise" baseFrequency="0.00606061 0.00649351" numOctaves="2" seed="31" stitchTiles="stitch" x="0" y="0" width="330" height="308" result="wnt"/>
-    <feTile in="wnt" x="-352" y="-352" width="1904" height="824" result="wnr"/>
-    <feOffset in="wnr" result="wn">
-      <animate attributeName="dx" from="0" to="-330" dur="34s" repeatCount="indefinite"/>
-      <animate attributeName="dy" from="0" to="-308" dur="34s" repeatCount="indefinite"/>
-    </feOffset>
-      <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.74" k3="0.26" result="nn"/>
-      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -1.15" result="heat"/>
-
-      <!-- the shape bends: slow noise pushes every point of it about -->
-      <feDisplacementMap in="SourceAlpha" in2="wn" scale="8" xChannelSelector="R" yChannelSelector="G" result="src"/>
-
-      <!-- distance from the shape, four ways -->
-      <feGaussianBlur in="src" stdDeviation="0.88" result="b0"/>
-      <feGaussianBlur in="src" stdDeviation="3.3" result="b1"/>
-      <feGaussianBlur in="src" stdDeviation="8.8" result="b2"/>
-      <feGaussianBlur in="src" stdDeviation="25.3" result="b3"/>
-
-      <!-- body of the glow: a violet rim everywhere, widening and heating where the noise runs hot -->
-      <feComposite in="b2" in2="heat" operator="arithmetic" k1="2.32" result="hb2"/>
-      <feComposite in="b3" in2="heat" operator="arithmetic" k1="2.56" result="hb3"/>
-      <feComposite in="b1" in2="hb2" operator="arithmetic" k2="0.8" k3="1" result="g1"/>
-      <feComposite in="g1" in2="hb3" operator="arithmetic" k2="1" k3="1" result="body"/>
-      <feComposite in="body" in2="src" operator="out" result="outer"/>
-
-      <!-- the hairline round every edge: b0*(1-b0) peaks right on it -->
-      <feComposite in="b0" in2="b0" operator="arithmetic" k1="-2" k2="1" k3="1" result="edge"/>
-      <feComposite in="outer" in2="edge" operator="arithmetic" k2="1" k3="1" result="v"/>
-
-      <!-- heat to colour: alpha becomes grey, grey goes through the palette and the film -->
+      <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.62" k3="0.38" result="nn"/>
+      <!-- spread the noise over the whole palette: black gaps, violet, and red to amber where it runs hot -->
+      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.4 0 0 0 -1.25" result="v"/>
       <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>
       <feComponentTransfer in="grey" result="col">
         <feFuncR type="table" tableValues="0.000 0.000 0.001 0.003 0.008 0.015 0.025 0.040 0.058 0.081 0.107 0.137 0.170 0.207 0.243 0.279 0.313 0.349 0.381 0.408 0.430 0.446 0.456 0.461 0.463 0.464 0.463 0.462 0.463 0.469 0.484 0.516 0.560 0.618 0.691 0.747 0.798 0.856 0.918 0.983 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000"><animate attributeName="tableValues" dur="14s" repeatCount="indefinite" values="0.000 0.000 0.001 0.003 0.008 0.015 0.025 0.040 0.058 0.081 0.107 0.137 0.170 0.207 0.243 0.279 0.313 0.349 0.381 0.408 0.430 0.446 0.456 0.461 0.463 0.464 0.463 0.462 0.463 0.469 0.484 0.516 0.560 0.618 0.691 0.747 0.798 0.856 0.918 0.983 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000;0.000 0.000 0.001 0.003 0.008 0.015 0.026 0.043 0.064 0.090 0.119 0.152 0.185 0.217 0.247 0.271 0.292 0.312 0.327 0.337 0.342 0.344 0.343 0.343 0.347 0.357 0.373 0.398 0.434 0.481 0.546 0.633 0.735 0.851 0.977 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.972;0.000 0.000 0.001 0.003 0.008 0.015 0.027 0.045 0.068 0.095 0.124 0.152 0.179 0.202 0.219 0.231 0.240 0.248 0.253 0.256 0.261 0.268 0.281 0.301 0.332 0.375 0.430 0.497 0.574 0.661 0.760 0.876 0.994 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.941 0.867 0.799 0.740 0.694 0.663;0.000 0.000 0.001 0.003 0.008 0.016 0.028 0.046 0.069 0.094 0.119 0.142 0.160 0.173 0.182 0.188 0.192 0.199 0.208 0.221 0.240 0.267 0.305 0.352 0.412 0.483 0.563 0.649 0.736 0.821 0.908 0.999 1.000 1.000 1.000 1.000 1.000 1.000 0.935 0.857 0.786 0.726 0.682 0.656 0.651 0.666 0.700 0.752;0.000 0.000 0.001 0.003 0.008 0.015 0.027 0.045 0.068 0.095 0.124 0.152 0.179 0.202 0.219 0.231 0.240 0.248 0.253 0.256 0.261 0.268 0.281 0.301 0.332 0.375 0.430 0.497 0.574 0.661 0.760 0.876 0.994 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.941 0.867 0.799 0.740 0.694 0.663;0.000 0.000 0.001 0.003 0.008 0.015 0.026 0.043 0.064 0.090 0.119 0.152 0.185 0.217 0.247 0.271 0.292 0.312 0.327 0.337 0.342 0.344 0.343 0.343 0.347 0.357 0.373 0.398 0.434 0.481 0.546 0.633 0.735 0.851 0.977 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.972;0.000 0.000 0.001 0.003 0.008 0.015 0.025 0.040 0.058 0.081 0.107 0.137 0.170 0.207 0.243 0.279 0.313 0.349 0.381 0.408 0.430 0.446 0.456 0.461 0.463 0.464 0.463 0.462 0.463 0.469 0.484 0.516 0.560 0.618 0.691 0.747 0.798 0.856 0.918 0.983 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000;0.000 0.000 0.001 0.003 0.008 0.014 0.024 0.038 0.054 0.073 0.095 0.121 0.151 0.185 0.222 0.260 0.300 0.343 0.386 0.426 0.462 0.494 0.521 0.542 0.559 0.572 0.580 0.582 0.580 0.576 0.576 0.585 0.598 0.616 0.642 0.650 0.657 0.676 0.706 0.745 0.793 0.847 0.905 0.965 1.000 1.000 1.000 1.000;0.000 0.000 0.001 0.003 0.008 0.015 0.025 0.040 0.058 0.081 0.107 0.137 0.170 0.207 0.243 0.279 0.313 0.349 0.381 0.408 0.430 0.446 0.456 0.461 0.463 0.464 0.463 0.462 0.463 0.469 0.484 0.516 0.560 0.618 0.691 0.747 0.798 0.856 0.918 0.983 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000"/></feFuncR>
@@ -70,9 +41,7 @@
       </feOffset>
       <feColorMatrix in="g1" type="matrix" values="0.55 0.15 0.15 0 0  0.15 0.55 0.15 0 0  0.15 0.15 0.55 0 0  0 0 0 0 1" result="g2"/>
       <feComposite in="woven" in2="g2" operator="arithmetic" k1="1.8" k2="0.235"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  2.6 2.6 2.6 0 0"/>
     </filter>
-    <path id="shape" fill-rule="evenodd" d="M80 58.0H1120A2 2 0 0 1 1120 62.0H80A2 2 0 0 1 80 58.0Z"/>
   </defs>
-  <use href="#shape" fill="#fff" filter="url(#halo)"/>
+  <rect width="1200" height="40" fill="#000" filter="url(#bar)"/>
 </svg>

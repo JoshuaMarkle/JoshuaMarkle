@@ -40,12 +40,7 @@
 
       <!-- the hairline round every edge: b0*(1-b0) peaks right on it -->
       <feComposite in="b0" in2="b0" operator="arithmetic" k1="-2" k2="1" k3="1" result="edge"/>
-      <feComposite in="outer" in2="edge" operator="arithmetic" k2="1" k3="1" result="v0"/>
-
-      <!-- the open dark: the same heat, faint, so the film shows in it too -->
-      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.7 0 0 0 -0.6" result="amb0"/>
-      <feComposite in="amb0" in2="src" operator="out" result="amb1"/>
-      <feComposite in="v0" in2="amb1" operator="arithmetic" k2="1" k3="0.55" result="v"/>
+      <feComposite in="outer" in2="edge" operator="arithmetic" k2="1" k3="1" result="v"/>
 
       <!-- heat to colour: alpha becomes grey, grey goes through the palette and the film -->
       <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>

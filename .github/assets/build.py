@@ -6,13 +6,12 @@ then printed onto VHS (lines, grain, a tracking jolt).
 Everything is SVG filters + SMIL, so it animates inside an <img> (GitHub README) with no JS.
 
   halo.svg          the name
-  marks/<id>.svg    project marks, lit the same way
-  divider.svg       a slit of light between sections
+  divider.svg       a bar of the same light, the height of a badge
   bead.svg          the site's drop of glass with the whole gradient in it
 
-usage: build.py [SITE_DIR]   (default ../joshuamarkle, for the font and the project marks)
+usage: build.py [SITE_DIR]   (default ../joshuamarkle, for the font)
 """
-import math, os, re, sys
+import math, os, sys
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
@@ -20,7 +19,6 @@ from fontTools.pens.transformPen import TransformPen
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "../../../joshuamarkle")
 FONT = os.path.join(SITE, "node_modules/@fontsource/special-gothic-expanded-one/files/special-gothic-expanded-one-latin-400-normal.woff")
-MARKS = ["gecko", "algotype", "jaguar", "milestone"]   # the site's main four
 
 # ---------- palette (Ember), oklab-interpolated like src/palettes.js ----------
 STOPS = [(0, '#000000'), (0.16, '#0d0424'), (0.34, '#3f13b0'), (0.5, '#7a2cff'), (0.63, '#b63db0'), (0.73, '#ff2a1a'), (0.86, '#ff8d1f'), (1, '#ffe6a3')]
@@ -193,6 +191,28 @@ def halo_svg(d, W, H, title, s=1.0, warp=30, px=1.0, jolt=5, heat=1.0, transform
 </svg>
 '''
 
+# ---------- the divider: a squared-off bar of the heat itself, on black ----------
+def divider_svg(W=1200, H=40, px=1.45):
+    """H 40 at 1200 wide comes out about as tall as a for-the-badge badge in a README"""
+    T = 600
+    box = (-T, 0, W + 2 * T, H)
+    # streaks: many cells across, one down, sliding sideways in opposite directions
+    n1 = noise("n1", box, T, H, 4, 1, 7, "21s", 1, 0)
+    n2 = noise("n2", box, 400, H, 7, 1, 19, "13s", -1, 0)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
+  <defs>
+    <filter id="bar" filterUnits="userSpaceOnUse" x="{-T}" y="0" width="{W+2*T}" height="{H}" color-interpolation-filters="sRGB">{n1}{n2}
+      <feComposite in="n1" in2="n2" operator="arithmetic" k2="0.62" k3="0.38" result="nn"/>
+      <!-- spread the noise over the whole palette: black gaps, violet, and red to amber where it runs hot -->
+      <feColorMatrix in="nn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.4 0 0 0 -1.25" result="v"/>
+      <feColorMatrix in="v" type="matrix" values="0 0 0 1 0  0 0 0 1 0  0 0 0 1 0  0 0 0 0 1" result="grey"/>
+      {palette_transfer("col")}{vhs("col", W, H, T, px=px, jolt=0)}
+    </filter>
+  </defs>
+  <rect width="{W}" height="{H}" fill="#000" filter="url(#bar)"/>
+</svg>
+'''
+
 # ---------- the bead: a drop of glass with the whole gradient in it ----------
 def bead_svg(R=300, px=1.6):
     C, r = R / 2, R * 0.36
@@ -266,10 +286,6 @@ def name_path(lines, W, H, cap=150, track=-0.02, lead=1.32):
     top = (H - cap * (1 + lead * (len(lines) - 1))) / 2
     return " ".join(line(t, top + cap + i * cap * lead) for i, t in enumerate(lines))
 
-def mark_path(id):
-    svg = open(os.path.join(SITE, "logos/svg", f"{id}.svg")).read()
-    return re.search(r'fill="#fff"[^>]*\sd="([^"]+)"', svg).group(1)
-
 def write(rel, text):
     p = os.path.join(HERE, rel)
     os.makedirs(os.path.dirname(p), exist_ok=True)
@@ -277,13 +293,6 @@ def write(rel, text):
     print(f"{rel:24} {len(text):>7} bytes")
 
 if __name__ == "__main__":
-    write("halo.svg", halo_svg(name_path(["JOSHUA", "MARKLE"], 1200, 560), 1200, 560, "Joshua Markle", warp=45, jolt=7.5, ns=3, amb=0.55))
-    # marks: 512 square drawn at 0.6 in a square canvas, shown about 170px across
-    for id in MARKS:
-        k, S = 0.68, 512
-        write(f"marks/{id}.svg", halo_svg(mark_path(id), S, S, id, s=0.62, warp=10, px=S / 170, jolt=3, heat=1.2, clear=True,
-                                          transform=f"translate({S*(1-k)/2:g} {S*(1-k)/2:g}) scale({k})"))
-    # divider: a slit of light, shown full width
-    W, H = 1200, 120
-    write("divider.svg", halo_svg(f"M80 {H/2-2}H{W-80}A2 2 0 0 1 {W-80} {H/2+2}H80A2 2 0 0 1 80 {H/2-2}Z", W, H, "", s=0.55, warp=8, px=1.45, jolt=0, heat=1.6, clear=True))
+    write("halo.svg", halo_svg(name_path(["JOSHUA", "MARKLE"], 1200, 560), 1200, 560, "Joshua Markle", warp=45, jolt=7.5, ns=3))
+    write("divider.svg", divider_svg())
     write("bead.svg", bead_svg())
